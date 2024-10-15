@@ -1,0 +1,100 @@
+---
+import type { CollectionEntry, getEntry } from 'astro:content';
+import { CldImage } from 'astro-cloudinary';
+
+interface Props {
+  articles: CollectionEntry<'articles'>[];
+}
+
+const { articles } = Astro.props;
+
+---
+
+<div class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 p-4">
+  {articles.map(article => (
+    <article>
+      <div class="grid gap-3 pb-3">
+        <div class="aspect-square w-full">
+          <a href={`/articles/${article.data.slug}`}>
+            <CldImage
+              src={article.data.heroImage}
+              alt={article.data.title}
+              width={300}
+              height={300}
+              grayscale
+              class="aspect-square w-full rounded-lg bg-cover bg-center bg-no-repeat"
+            />
+          </a>
+        </div>
+        <h2><a href={`/articles/${article.data.slug}`}>{article.data.title}</a></h2> 
+        <p class="text-base font-medium leading-normal text-[#F8F9FB]">{article.data.description}</p>
+        <p class="text-sm font-normal leading-normal text-[#8A9DC0]">Category: {article.data.category}</p>
+        <p class="text-sm font-normal leading-normal text-[#8A9DC0]">Published: {article.data.pubDate.toLocaleDateString()}</p>
+      </div>
+    </article>
+  ))}
+</div>
+
+
+
+
+
+
+<!-- 
+<div class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 p-4">
+    <div class="grid gap-3 pb-3">
+      <div class="aspect-square w-full rounded-lg bg-cover bg-center bg-no-repeat" style='background-image: url("https://cdn.usegalileo.ai/sdxl10/8936c5aa-e4cb-48bf-935c-a8f945bc2ded.png");'></div>
+      <div>
+        <p class="text-base font-medium leading-normal text-[#F8F9FB]">AI and Ethics: Navigating the Complex Landscape</p>
+        <p class="text-sm font-normal leading-normal text-[#8A9DC0]">Explore the moral implications of AI advancements.</p>
+      </div>
+    </div>
+    <div class="grid gap-3 pb-3">
+      <div class="aspect-square w-full rounded-lg bg-cover bg-center bg-no-repeat" style='background-image: url("https://cdn.usegalileo.ai/sdxl10/f469d035-5fdd-4561-a052-7fda5e5e268c.png");'></div>
+      <div>
+        <p class="text-base font-medium leading-normal text-[#F8F9FB]">Transformative AI: How Machine Learning is Shaping the Future</p>
+        <p class="text-sm font-normal leading-normal text-[#8A9DC0]">Discover breakthroughs in AI technology.</p>
+      </div>
+    </div>
+    <div class="grid gap-3 pb-3">
+      <div class="aspect-square w-full rounded-lg bg-cover bg-center bg-no-repeat" style='background-image: url("https://cdn.usegalileo.ai/replicate/eb4ecf7d-5d26-4b72-8799-6a1f8ee4e820.png");'></div>
+      <div>
+        <p class="text-base font-medium leading-normal text-[#F8F9FB]">AI in Healthcare: Innovations Saving Lives</p>
+        <p class="text-sm font-normal leading-normal text-[#8A9DC0]">Learn about AI applications in medical diagnosis.</p>
+      </div>
+    </div>
+    <div class="grid gap-3 pb-3">
+      <div class="aspect-square w-full rounded-lg bg-cover bg-center bg-no-repeat" style='background-image: url("https://cdn.usegalileo.ai/sdxl10/61834ec6-a953-4c5a-9cb5-b886159002bc.png");'></div>
+      <div>
+        <p class="text-base font-medium leading-normal text-[#F8F9FB]">AI for Finance: Risk Assessment Revolution</p>
+        <p class="text-sm font-normal leading-normal text-[#8A9DC0]">See how AI is transforming financial analysis.</p>
+      </div>
+    </div>
+    <div class="grid gap-3 pb-3">
+      <div class="aspect-square w-full rounded-lg bg-cover bg-center bg-no-repeat" style='background-image: url("https://cdn.usegalileo.ai/sdxl10/99c918d5-dc0b-47bd-9d36-8bc296a9ded8.png");'></div>
+      <div>
+        <p class="text-base font-medium leading-normal text-[#F8F9FB]">AI in Education: Personalized Learning Paths</p>
+        <p class="text-sm font-normal leading-normal text-[#8A9DC0]">Find out how AI customizes the learning experience.</p>
+      </div>
+    </div>
+    <div class="grid gap-3 pb-3">
+      <div class="aspect-square w-full rounded-lg bg-cover bg-center bg-no-repeat" style='background-image: url("https://cdn.usegalileo.ai/sdxl10/974b0038-8dec-41ec-86b3-d3eb8cc4b893.png");'></div>
+      <div>
+        <p class="text-base font-medium leading-normal text-[#F8F9FB]">Autonomous Vehicles: The Road Ahead</p>
+        <p class="text-sm font-normal leading-normal text-[#8A9DC0]">Understand the impact of AI on transportation.</p>
+      </div>
+    </div>
+
+     <div class="grid items-stretch justify-start rounded-xl shadow-[0_0_4px_rgba(0,0,0,0.1)] bg-[#FFFFFF] col-span-2">
+      <div
+        class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl"
+        style='background-image: url("https://cdn.usegalileo.ai/sdxl10/65a34108-3f85-437d-b066-97514207a639.png");'
+      ></div>
+      <div class="grid pb-3items-stretch justify-center gap-1 py-4 px-4">
+        <p class="text-[#1C160C] text-lg font-bold leading-tight tracking-[-0.015em]">AI and Ethics: Navigating the Grey Areas</p>
+        <div class="flex items-end gap-3 justify-between">
+          <p class="text-[#A18249] text-base font-normal leading-normal">An in-depth look at the ethical considerations of AI development.</p>
+        </div>
+      </div>
+    </div>
+  </div> -->

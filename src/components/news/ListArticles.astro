@@ -1,0 +1,17 @@
+---
+import { getCollection } from 'astro:content';
+import ArticleCard from '@/components/base/ArticleCard'
+import { cn } from '@/utils'
+
+const articles = await getCollection('articles');
+---
+
+<div class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 p-4">
+    <div class="grid gap-3 pb-3">
+      <div class="aspect-square w-full rounded-lg bg-cover bg-center bg-no-repeat" style='background-image: url("https://cdn.usegalileo.ai/sdxl10/8936c5aa-e4cb-48bf-935c-a8f945bc2ded.png");'></div>
+      <div>
+        <p class="text-base font-medium leading-normal text-[#F8F9FB]">AI and Ethics: Navigating the Complex Landscape</p>
+        <p class="text-sm font-normal leading-normal text-[#8A9DC0]">Explore the moral implications of AI advancements.</p>
+      </div>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+---
+import BaseHead from '@/components/base/BaseHead'
+import Header from '@/components/base/Header'
+import Aside from '@/components/base/Aside'
+import Breadcrumbs from '@/components/utils/Breadcrumbs'
+import Hero from '@/components/base/Hero'
+import Sidebar from '@/components/base/Sidebar'
+import Footer from '@/components/base/Footer'
+
+import ProviderTheme from '@/components/utils/ProviderTheme'
+import ProviderAnimations from '@/components/utils/ProviderAnimations'
+
+const { title, description, image, articleDate } = Astro.props
+---
+
+<html lang='en' class='scroll-smooth'>
+	<head>
+		<BaseHead title={title} description={description} ogImage={image} articleDate={articleDate} />
+		<ProviderTheme />
+		<ProviderAnimations />
+	</head>
+
+	<body class="bg-grid-pattern-light dark:bg-grid-pattern-dark text-gray-900  dark:text-white antialiased hover:subpixel-antialiased">
+		<div vaul-drawer-wrapper="">
+			<div class="bg-background relative flex min-h-screen flex-col">
+				<Header />
+				<div class="flex-1">
+					<div>
+						<div class="container flex-1 items-start md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10">
+							<Aside />
+							<div class="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_300px]">
+								<div class="mx-auto w-full min-w-0">
+									<Breadcrumbs />
+									<main>
+										<div class="pb-12 pt-8">
+											<Hero />
+											<slot />
+										</div>
+									</main>
+								</div>
+								<Sidebar />
+							</div>
+						</div>
+					</div>
+				</div>
+				<Footer />
+			</div>
+		</div>
+	</body>
+</html>

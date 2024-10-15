@@ -1,0 +1,24 @@
+---
+import { getCollection } from 'astro:content';
+import ArticleGrid from '@/components/ArticleGrid';
+import BaseLayout from '@/layouts/BaseLayout';
+import { CATEGORIES } from '@/data/categories';
+
+export async function getStaticPaths() {
+  const categories = CATEGORIES.map(cat => cat.name);
+  return categories.map(category => ({
+    params: { category },
+    props: { category },
+  }));
+}
+
+const { category } = Astro.props;
+const articles = await getCollection('articles', ({ data }) => {
+  return !data.draft && data.category === category;
+});
+---
+
+<BaseLayout title={`Articles in ${category}`}>
+  <h1>{category}</h1>
+  <ArticleGrid articles={articles} />
+</BaseLayout>

@@ -1,16 +1,23 @@
 ---
 
+import Layout from '@/layouts/Layout'
+import ListCategories from '@/components/news/ListCategories'
+import LatestNews from '@/components/news/LatestNews'
+import ArticleGrid from '@/components/news/ArticleGrid'
+import SmallArticleGrid from '@/components/news/SmallArticleGrid'
+
+import { getCollection } from 'astro:content';
+const allArticles = await getCollection('articles', ({ data }) => !data.draft);
+// const featuredArticles = allArticles.filter(article => article.data.featured);
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title='Home'>
+    <ListCategories />
+    <LatestNews />
+    <!-- <ArticleGrid articles={featuredArticles} /> -->
+    <ArticleGrid articles={allArticles} />
+    <SmallArticleGrid />
+   
+	
+</Layout>
+
