@@ -22,3 +22,19 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Build output
+dist/
+build/
+
+# Cache
+.cache/
+
+# Temporary files
+*.log
+*.tmp
+
+# Content collection generated files
+src/content/config.ts
+src/content/*
+!src/content/.gitkeep
