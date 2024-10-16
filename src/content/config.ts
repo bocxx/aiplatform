@@ -1,7 +1,7 @@
 import { defineCollection, z } from 'astro:content';
 import { cldAssetsLoader } from 'astro-cloudinary/loaders';
 import { glob, file } from 'astro/loaders';
-import { CATEGORIES } from '/Users/nerd/Projects/data/categories';
+import { CATEGORIES } from '../content/categories';
 
 const newsArticles = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/data/articles" }),

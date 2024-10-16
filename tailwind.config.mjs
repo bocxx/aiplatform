@@ -44,5 +44,7 @@ export default {
 			backgroundImage: ['dark'],
 		},
 	},
-	plugins: [],
+	plugins: [
+		require('@tailwindcss/typography'),
+	  ],
 }

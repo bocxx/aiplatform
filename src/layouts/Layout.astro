@@ -13,14 +13,14 @@ import ProviderAnimations from '@/components/utils/ProviderAnimations'
 const { title, description, image, articleDate } = Astro.props
 ---
 
-<html lang='en' class='scroll-smooth'>
+<html lang='en' class='scroll-smooth dark'>
 	<head>
 		<BaseHead title={title} description={description} ogImage={image} articleDate={articleDate} />
 		<ProviderTheme />
 		<ProviderAnimations />
 	</head>
 
-	<body class="bg-grid-pattern-light dark:bg-grid-pattern-dark text-gray-900  dark:text-white antialiased hover:subpixel-antialiased">
+	<body class="bg-grid-pattern-light dark:bg-grid-pattern-dark text-gray-900  dark:text-gray-100 antialiased hover:subpixel-antialiased">
 		<div vaul-drawer-wrapper="">
 			<div class="bg-background relative flex min-h-screen flex-col">
 				<Header />
