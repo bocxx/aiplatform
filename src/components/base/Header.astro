@@ -1,9 +1,9 @@
 ---
 // import HeaderLink from '@/components/HeaderLink'
-import MenuIcon from '@/components/icons/MenuIcon'
 import TagIcon from "@/components/icons/TagIcon"
 import FireIcon from '@/components/icons/FireIcon'
 import ToggleTheme from "@/components/utils/ToggleTheme"
+import { CATEGORIES } from '../../content/categories';
 ---
 
 <header
@@ -17,64 +17,22 @@ import ToggleTheme from "@/components/utils/ToggleTheme"
       </a>
 
       <nav class="flex items-center gap-4 text-sm lg:gap-6">
-        
-        <a 
-          class="flex items-center hover:text-foreground/80 text-foreground/60 transition-colors"
-          href="/docs">
-          <FireIcon class="mr-2" /> <!-- Add margin to the right of the icon -->
-          Trending 
-        </a>
-        <a 
-        class="flex items-center hover:text-foreground/80 text-foreground/60 transition-colors"
-        href="/docs">
-        Tech
-      </a>
-      <a 
-      class="flex items-center hover:text-foreground/80 text-foreground/60 transition-colors"
-      href="/docs"><!-- Add margin to the right of the icon -->
-      Wetenschap
-    </a>
-    <a 
-    class="flex items-center hover:text-foreground/80 text-foreground/60 transition-colors"
-    href="/docs"><!-- Add margin to the right of the icon -->
-    Gezondheidszorg
-  </a>
-  <a 
-  class="flex items-center hover:text-foreground/80 text-foreground/60 transition-colors"
-  href="/docs"><!-- Add margin to the right of the icon -->
-  Onderwijs
-</a>
-<a 
-class="flex items-center hover:text-foreground/80 text-foreground/60 transition-colors"
-href="/docs"><!-- Add margin to the right of the icon -->
-Ethiek
-</a>
-<a 
-class="flex items-center hover:text-foreground/80 text-foreground/60 transition-colors"
-href="/docs"><!-- Add margin to the right of the icon -->
-Kunst
-</a>
-<a 
-class="flex items-center hover:text-foreground/80 text-foreground/60 transition-colors"
-href="/docs"><!-- Add margin to the right of the icon -->
-Fun
-</a>
-      
+        {[...CATEGORIES]
+          .sort((a, b) => (a.name === 'Trending' ? -1 : b.name === 'Trending' ? 1 : 0))
+          .map((category) => (
+            <a
+              class="flex items-center hover:text-foreground/80 text-foreground/60 transition-colors"
+              href="/docs"
+            >
+              {category.name === 'Trending' && <FireIcon class="mr-2" />}
+              {category.name}
+            </a>
+          ))}
       </nav>
     </div>
-    <!-- End main nav -->
+ 
 
-    <button
-      class="focus-visible:ring-ring hover:text-accent-foreground mr-2 inline-flex h-9 items-center justify-center whitespace-nowrap rounded-md px-0 py-2 text-base font-medium transition-colors hover:bg-transparent focus-visible:bg-transparent focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 disabled:pointer-events-none disabled:opacity-50 md:hidden"
-      type="button"
-      aria-haspopup="dialog"
-      aria-expanded="false"
-      aria-controls="radix-:R15u6ja:"
-      data-state="closed"
-    >
-      <MenuIcon />
-      <span class="sr-only">Menu Mobiel</span>
-    </button>
+   
 
     <div
       class="flex flex-1 items-center justify-between space-x-2 md:justify-end"

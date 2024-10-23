@@ -1,6 +1,7 @@
 ---
 
-import Layout from '@/layouts/Layout'
+import BaseLayout from '@/layouts/BaseLayout'
+import Hero from '@/components/base/Hero'
 import ListCategories from '@/components/news/ListCategories'
 import LatestNews from '@/components/news/LatestNews'
 import ArticleGrid from '@/components/news/ArticleGrid'
@@ -11,7 +12,8 @@ const allArticles = await getCollection('articles', ({ data }) => !data.draft);
 // const featuredArticles = allArticles.filter(article => article.data.featured);
 ---
 
-<Layout title='Home'>
+<BaseLayout title='Home'>
+    <Hero />
     <ListCategories />
     <LatestNews />
     <!-- <ArticleGrid articles={featuredArticles} /> -->
@@ -19,5 +21,5 @@ const allArticles = await getCollection('articles', ({ data }) => !data.draft);
     <SmallArticleGrid />
    
 	
-</Layout>
+</BaseLayout>
 

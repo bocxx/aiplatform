@@ -26,8 +26,8 @@ const { articles } = Astro.props;
             />
           </a>
         </div>
-        <h2><a href={`/articles/${article.data.slug}`}>{article.data.title}</a></h2> 
-        <p class="text-base font-medium leading-normal text-[#F8F9FB]">{article.data.description}</p>
+        <h2 class="font-medium"><a href={`/articles/${article.data.slug}`}>{article.data.title}</a></h2> 
+        <p class="text-base font-normal">{article.data.description}</p>
         <p class="text-sm font-normal leading-normal text-[#8A9DC0]">Category: {article.data.category}</p>
         <p class="text-sm font-normal leading-normal text-[#8A9DC0]">Published: {article.data.pubDate.toLocaleDateString()}</p>
       </div>

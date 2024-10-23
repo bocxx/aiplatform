@@ -1,8 +1,8 @@
 ---
 import { getCollection } from 'astro:content';
-import ArticleGrid from '@/components/ArticleGrid';
+import ArticleGrid from '@/components/news/ArticleGrid';
 import BaseLayout from '@/layouts/BaseLayout';
-import { CATEGORIES } from '@/data/categories';
+import { CATEGORIES } from '../../content/categories';
 
 export async function getStaticPaths() {
   const categories = CATEGORIES.map(cat => cat.name);

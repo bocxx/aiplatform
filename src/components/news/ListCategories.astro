@@ -3,12 +3,13 @@ import { CATEGORIES } from '../../content/categories';
 import Category from './Category.astro';
 
 const { activeCategory } = Astro.props;
+const sortedCategories = [...CATEGORIES].sort((a, b) => a.name.localeCompare(b.name));
 ---
 
 <div class='relative flex flex-wrap min-w-full gap-5 pt-10 pb-10'>
-	<Category name="View All" activeCategory={activeCategory} />
+	<Category name="Nieuw" activeCategory={activeCategory} />
 	{
-		CATEGORIES.map((category) => (
+		sortedCategories.map((category) => (
 			<Category name={category.name} activeCategory={activeCategory} />
 		))
 	}

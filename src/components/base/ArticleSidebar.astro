@@ -1,0 +1,36 @@
+<div class="hidden text-sm xl:block">
+    <div class="sticky top-16 -mt-10 h-[calc(100vh-3.5rem)] pt-4">
+      <div
+        class="relative overflow-hidden h-full pb-10"
+        style="position: relative; --radix-scroll-area-corner-width: 0px; --radix-scroll-area-corner-height: 0px;"
+      >
+        <style>
+          [data-radix-scroll-area-viewport] {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            -webkit-overflow-scrolling: touch;
+          }
+          [data-radix-scroll-area-viewport]::-webkit-scrollbar {
+            display: none;
+          }
+        </style><div
+          data-radix-scroll-area-viewport=""
+          class="h-full w-full rounded-[inherit]"
+          style="overflow: hidden scroll;"
+        >
+          <div style="min-width: 100%; display: table;">
+  
+            
+            <div class="space-y-2">
+              <p class="font-medium">Inhoudsopgave</p>
+              <slot />
+            </div>
+            
+            
+          
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

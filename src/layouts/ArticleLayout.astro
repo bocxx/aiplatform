@@ -1,9 +1,15 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout'
-
-const { title, description, image, articleDate } = Astro.props
+import ArticleSidebar from '@/components/base/ArticleSidebar'
+import TableOfContents from '@/components/utils/TableOfContents';
+const { title, description, image, articleDate, headings } = Astro.props
 ---
 
-<BaseLayout title={title} description={description} image={image} articleDate={articleDate}>
+<BaseLayout title={title} description={description} image={image} articleDate={articleDate} headings={headings}>
 	<slot />
+	<ArticleSidebar slot="sidebar">
+		<TableOfContents headings={headings} />
+	</ArticleSidebar>
 </BaseLayout>
+
+

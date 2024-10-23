@@ -1,4 +1,5 @@
 ---
+// import { ClientRouter } from 'astro:transitions';
 import BaseHead from '@/components/base/BaseHead'
 import Header from '@/components/base/Header'
 import Aside from '@/components/base/Aside'
@@ -17,6 +18,7 @@ const { title, description, image, articleDate } = Astro.props
 		<BaseHead title={title} description={description} ogImage={image} articleDate={articleDate} />
 		<ProviderTheme />
 		<ProviderAnimations />
+		<!-- <ClientRouter /> -->
 	</head>
 
 	<body class="bg-gray-100 text-gray-900 dark:bg-[#111112] dark:text-white antialiased hover:subpixel-antialiased">
@@ -30,14 +32,17 @@ const { title, description, image, articleDate } = Astro.props
 							<div class="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_300px]">
 								<div class="mx-auto w-full min-w-0">
 									<Breadcrumbs />
+
+									
 									<main>
 										<div class="pb-12 pt-8">
-											
 											<slot />
 										</div>
 									</main>
 								</div>
-								<Sidebar />
+								<slot name="sidebar">
+									<Sidebar />
+								</slot>
 							</div>
 						</div>
 					
