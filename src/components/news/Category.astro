@@ -16,10 +16,10 @@ const icon = category ? category.icon : 'mdi:view-grid';
 ---
 
 <a
-  href={name === 'View All' ? '/' : sluglify(`/category/${unsluglifyNameCategory}/1`)}
+  href={name === 'View All' ? '/' : `/category/${unsluglifyNameCategory}`}
   class={cn(
-    `flex items-center gap-x-2 rounded-full bg-[#F4EFE6] px-4 py-2 text-[#1C160C] hover:bg-[#E9E2D6] transition-colors duration-150 ease-linear`,
-    isActive && `bg-[#E9E2D6]`
+    `flex items-center gap-x-2 rounded-lg bg-[#F4EFE6] px-4 py-2 text-[#1C160C] hover:bg-[#E9E2D6] transition-colors duration-150 ease-linear`,
+    isActive && `bg-[#eedfc5]`
   )}
 >
   <Icon name={icon} size="20px" />

@@ -3,22 +3,63 @@ import { getCollection } from 'astro:content';
 import ArticleGrid from '@/components/news/ArticleGrid';
 import BaseLayout from '@/layouts/BaseLayout';
 import { CATEGORIES } from '../../content/categories';
+import ListCategories from '@/components/news/ListCategories';
 
 export async function getStaticPaths() {
-  const categories = CATEGORIES.map(cat => cat.name);
-  return categories.map(category => ({
-    params: { category },
-    props: { category },
-  }));
+  const categories = CATEGORIES.map(cat => cat.name.toLowerCase());
+  
+  const paths = [];
+  for (const category of categories) {
+    const articles = await getCollection('articles', ({ data }) => {
+      return !data.draft && data.category.toLowerCase() === category.toLowerCase();
+    });
+    
+    paths.push({
+      params: { category },
+      props: { 
+        category,
+        articles,
+        totalArticles: articles.length
+      }
+    });
+  }
+  
+  return paths;
 }
 
-const { category } = Astro.props;
-const articles = await getCollection('articles', ({ data }) => {
-  return !data.draft && data.category === category;
-});
+const { category, articles, totalArticles } = Astro.props;
+const ITEMS_PER_PAGE = 8;
+const initialArticles = articles.slice(0, ITEMS_PER_PAGE);
+const hasMore = totalArticles > ITEMS_PER_PAGE;
+
+// Find the original category name with proper casing
+const categoryData = CATEGORIES.find(cat => cat.name.toLowerCase() === category.toLowerCase());
+const displayCategory = categoryData ? categoryData.name : category;
 ---
 
-<BaseLayout title={`Articles in ${category}`}>
-  <h1>{category}</h1>
-  <ArticleGrid articles={articles} />
+<BaseLayout title={`Artikelen in ${displayCategory}`}>
+  <ListCategories activeCategory={displayCategory} />
+  <div id="article-container">
+    <ArticleGrid articles={initialArticles} />
+    {hasMore && (
+      <div
+        hx-get={`/api/articles/${category}?page=2`}
+        hx-trigger="revealed"
+        hx-swap="afterend"
+        hx-indicator=".loading-indicator"
+        class="loading-trigger"
+      >
+        <div class="loading-indicator" style="display: none;">
+          <span class="loading">Loading more articles...</span>
+        </div>
+      </div>
+    )}
+  </div>
 </BaseLayout>
+
+<style>
+  .loading-indicator {
+    text-align: center;
+    padding: 1rem;
+  }
+</style>

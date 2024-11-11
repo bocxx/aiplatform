@@ -7,19 +7,17 @@ import LatestNews from '@/components/news/LatestNews'
 import ArticleGrid from '@/components/news/ArticleGrid'
 import SmallArticleGrid from '@/components/news/SmallArticleGrid'
 
-import { getCollection } from 'astro:content';
-const allArticles = await getCollection('articles', ({ data }) => !data.draft);
-// const featuredArticles = allArticles.filter(article => article.data.featured);
+import { fetchAllArticles } from '@/utils/fetch';
+const allArticles = await fetchAllArticles();
+
 ---
 
 <BaseLayout title='Home'>
     <Hero />
     <ListCategories />
     <LatestNews />
-    <!-- <ArticleGrid articles={featuredArticles} /> -->
     <ArticleGrid articles={allArticles} />
     <SmallArticleGrid />
    
 	
 </BaseLayout>
-

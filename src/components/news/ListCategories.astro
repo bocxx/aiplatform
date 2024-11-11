@@ -6,7 +6,7 @@ const { activeCategory } = Astro.props;
 const sortedCategories = [...CATEGORIES].sort((a, b) => a.name.localeCompare(b.name));
 ---
 
-<div class='relative flex flex-wrap min-w-full gap-5 pt-10 pb-10'>
+<div class='relative flex flex-wrap min-w-full gap-5 pt-4 pb-10 justify-center items-center'>
 	<Category name="Nieuw" activeCategory={activeCategory} />
 	{
 		sortedCategories.map((category) => (

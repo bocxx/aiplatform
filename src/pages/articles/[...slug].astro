@@ -15,7 +15,7 @@ const article = await getEntry('articles', Astro.props.id);
 const { Content, headings } = await render(article);
 
 // Optionally, fetch related articles or other data here
-const relatedArticles = await getCollection('articles', ({ data }) => data.category === article.data.category && data.slug !== article.data.slug);
+const relatedArticles = (await getCollection('articles', ({ data }) => data.category === article.data.category && data.slug !== article.data.slug)).slice(0, 3);
 
 ---
 

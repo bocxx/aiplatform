@@ -18,7 +18,11 @@ import { CATEGORIES } from '../../content/categories';
 
       <nav class="flex items-center gap-4 text-sm lg:gap-6">
         {[...CATEGORIES]
-          .sort((a, b) => (a.name === 'Trending' ? -1 : b.name === 'Trending' ? 1 : 0))
+          .sort((a, b) => {
+            if (a.name === 'Trending') return -1;
+            if (b.name === 'Trending') return 1;
+            return a.name.localeCompare(b.name); // Sort alphabetically
+          })
           .map((category) => (
             <a
               class="flex items-center hover:text-foreground/80 text-foreground/60 transition-colors"

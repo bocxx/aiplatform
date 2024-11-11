@@ -4,7 +4,6 @@ import FormattedDate from '@/components/utils/FormattedDate'
 import ArrowUp from '@/components/icons/ArrowUp'
 
 const {
-	id,
 	data: { title, description, pubDate, heroImage, category },
 	readTime,
 	slug
@@ -15,10 +14,11 @@ const {
 	<a class='relative overflow-hidden' href={`/articles/${slug}/`}>
 		<CldImage
 			src={heroImage}
-			width={600}
+			width={300}
 			height={200}
 			format='webp'
-			class='h-full min-w-full object-cover hover:scale-[101%] transition-all duration-200 rounded-[2px]'
+			grayscale
+			 class="aspect-square w-full rounded-lg bg-cover bg-center bg-no-repeat"
 			alt={`img of ${title}`}
 			
 		/>

@@ -1,5 +1,5 @@
 ---
-import type { CollectionEntry, getEntry } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
 import { CldImage } from 'astro-cloudinary';
 
 interface Props {
@@ -21,7 +21,7 @@ const { articles } = Astro.props;
               alt={article.data.title}
               width={300}
               height={300}
-              grayscale
+
               class="aspect-square w-full rounded-lg bg-cover bg-center bg-no-repeat"
             />
           </a>
